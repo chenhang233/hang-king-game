@@ -7,11 +7,11 @@
 package main
 
 import (
-	"hang-king-game/internal/biz"
-	"hang-king-game/internal/conf"
-	"hang-king-game/internal/data"
-	"hang-king-game/internal/server"
-	"hang-king-game/internal/service"
+	"hang-king-game/app/job/internal/biz"
+	"hang-king-game/app/job/internal/conf"
+	"hang-king-game/app/job/internal/data"
+	"hang-king-game/app/job/internal/server"
+	"hang-king-game/app/job/internal/service"
 
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/log"

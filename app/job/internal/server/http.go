@@ -1,9 +1,9 @@
 package server
 
 import (
-	v1 "hang-king-game/api/helloworld/v1"
-	"hang-king-game/internal/conf"
-	"hang-king-game/internal/service"
+	v1 "hang-king-game/app/job/api/helloworld/v1"
+	"hang-king-game/app/job/internal/conf"
+	"hang-king-game/app/job/internal/service"
 
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"

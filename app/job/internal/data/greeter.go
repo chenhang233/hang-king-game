@@ -3,7 +3,7 @@ package data
 import (
 	"context"
 
-	"hang-king-game/internal/biz"
+	"hang-king-game/app/job/internal/biz"
 
 	"github.com/go-kratos/kratos/v2/log"
 )

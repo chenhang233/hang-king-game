@@ -1,7 +1,7 @@
 package data
 
 import (
-	"hang-king-game/internal/conf"
+	"hang-king-game/app/job/internal/conf"
 
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/google/wire"

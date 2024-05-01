@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	v1 "hang-king-game/api/helloworld/v1"
-	"hang-king-game/internal/biz"
+	v1 "hang-king-game/app/job/api/helloworld/v1"
+	"hang-king-game/app/job/internal/biz"
 )
 
 // GreeterService is a greeter service.

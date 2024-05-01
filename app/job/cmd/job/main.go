@@ -4,7 +4,7 @@ import (
 	"flag"
 	"os"
 
-	"hang-king-game/internal/conf"
+	"hang-king-game/app/job/internal/conf"
 
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/config"
