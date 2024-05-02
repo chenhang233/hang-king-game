@@ -2,6 +2,8 @@ package data
 
 import (
 	"context"
+	"encoding/json"
+	"hang-king-game/app/user/internal/model"
 
 	"hang-king-game/app/user/internal/biz"
 
@@ -22,6 +24,17 @@ func NewGreeterRepo(data *Data, logger log.Logger) biz.GreeterRepo {
 }
 
 func (r *greeterRepo) Save(ctx context.Context, g *biz.Greeter) (*biz.Greeter, error) {
+	p := &model.Product{}
+	result := r.data.GetDB(model.DBTest).Table(p.TableName()).Select("*").Where("id = ?", g.Id).Find(p)
+	if err := result.Error; err != nil {
+		r.log.WithContext(ctx).Errorf("Save error err:%v", err)
+		return nil, err
+	}
+	m, err := json.Marshal(p)
+	if err != nil {
+		return nil, err
+	}
+	g.Hello = string(m)
 	return g, nil
 }
 

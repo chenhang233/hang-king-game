@@ -6,7 +6,7 @@ server:
     addr: 0.0.0.0:9000
     timeout: 1s
 data:
-  database:
+  databases:
     - driver: mysql
       name: test
       source: root:123456@tcp(127.0.0.1:3306)/test?parseTime=True&loc=Local
@@ -18,7 +18,9 @@ data:
       read_timeout: 0.2s
       write_timeout: 0.2s
       db_index: 0
+      password: a123456
     - addr: 192.168.1.11:6379
       read_timeout: 0.2s
       write_timeout: 0.2s
       db_index: 1
+      password: a123456

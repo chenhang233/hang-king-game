@@ -2,28 +2,26 @@ package service
 
 import (
 	"context"
-
 	v1 "hang-king-game/app/user/api/helloworld/v1"
 	"hang-king-game/app/user/internal/biz"
 )
 
-// GreeterService is a greeter service.
 type GreeterService struct {
 	v1.UnimplementedGreeterServer
-
 	uc *biz.GreeterUsecase
 }
 
-// NewGreeterService new a greeter service.
 func NewGreeterService(uc *biz.GreeterUsecase) *GreeterService {
-	return &GreeterService{uc: uc}
+
+	return &GreeterService{
+		uc: uc,
+	}
 }
 
-// SayHello implements helloworld.GreeterServer.
-func (s *GreeterService) SayHello(ctx context.Context, in *v1.HelloRequest) (*v1.HelloReply, error) {
-	g, err := s.uc.CreateGreeter(ctx, &biz.Greeter{Hello: in.Name})
+func (s *GreeterService) SayHello(ctx context.Context, req *v1.HelloRequest) (*v1.HelloReply, error) {
+	greeter, err := s.uc.CreateGreeter(ctx, &biz.Greeter{Id: int(req.Id)})
 	if err != nil {
 		return nil, err
 	}
-	return &v1.HelloReply{Message: "Hello " + g.Hello}, nil
+	return &v1.HelloReply{Message: greeter.Hello}, nil
 }

@@ -17,6 +17,7 @@ var (
 // Greeter is a Greeter model.
 type Greeter struct {
 	Hello string
+	Id    int
 }
 
 // GreeterRepo is a Greater repo.
