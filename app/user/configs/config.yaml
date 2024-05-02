@@ -7,9 +7,18 @@ server:
     timeout: 1s
 data:
   database:
-    driver: mysql
-    source: root:root@tcp(127.0.0.1:3306)/test?parseTime=True&loc=Local
+    - driver: mysql
+      name: test
+      source: root:123456@tcp(127.0.0.1:3306)/test?parseTime=True&loc=Local
+    - driver: mysql
+      name: hang_king_game
+      source: root:123456@tcp(127.0.0.1:3306)/hang_king_game?parseTime=True&loc=Local
   redis:
-    addr: 127.0.0.1:6379
-    read_timeout: 0.2s
-    write_timeout: 0.2s
+    - addr: 192.168.1.11:6379
+      read_timeout: 0.2s
+      write_timeout: 0.2s
+      db_index: 0
+    - addr: 192.168.1.11:6379
+      read_timeout: 0.2s
+      write_timeout: 0.2s
+      db_index: 1

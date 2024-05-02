@@ -15,6 +15,11 @@
     kratos proto server api/helloworld/v1/demo.proto -t internal/service  // -t 指定生成目录
 ```
 
+#### 修改 conf.proto， 重新生成 conf.pb.go
+```
+    protoc --go_out=. -I=. conf.proto
+```
+
 #### 命令运行
 ```
     kratos run 
