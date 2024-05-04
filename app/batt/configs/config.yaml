@@ -1,0 +1,26 @@
+server:
+  http:
+    addr: 0.0.0.0:8000
+    timeout: 1s
+  grpc:
+    addr: 0.0.0.0:9000
+    timeout: 1s
+data:
+  databases:
+    - driver: mysql
+      name: test
+      source: root:123456@tcp(127.0.0.1:3306)/test?parseTime=True&loc=Local
+    - driver: mysql
+      name: hang_king_game
+      source: root:123456@tcp(127.0.0.1:3306)/hang_king_game?parseTime=True&loc=Local
+  redis:
+    - addr: 192.168.1.11:6379
+      read_timeout: 0.2s
+      write_timeout: 0.2s
+      db_index: 0
+      password: a123456
+    - addr: 192.168.1.11:6379
+      read_timeout: 0.2s
+      write_timeout: 0.2s
+      db_index: 1
+      password: a123456

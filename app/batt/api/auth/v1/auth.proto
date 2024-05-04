@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package api.auth.v1;
+
+import "validate/validate.proto";
+
+option go_package = "zskj_game/api/auth/v1;v1";
+option java_multiple_files = true;
+option java_package = "api.auth.v1";
+
+// 注册 系统服务请求
+message AuthLoginRequest {
+	string version = 1 [(validate.rules).string = {min_len: 3, max_len:10}];
+	string token = 6 [(validate.rules).string = {min_len: 0, max_len:250}];
+}
+// 注册 系统服务返回
+message OnSystemConfigReply {
+	message game {
+		int64 duration = 1;
+		int64 score = 2;
+	}
+	// 游戏材料配置
+	message material {
+		int64 id = 1;
+		string name = 2;
+		int64 level = 3;
+		int64 weight = 4;
+		int64 score = 5;
+	}
+	message gift {
+		int64 id = 1;
+		string name = 2;
+		int64 combat = 3;
+		int64 duration = 4;
+		int64 level = 5;
+	}
+	repeated game game_config = 1;
+	repeated material game_material = 2;
+	repeated gift game_gift = 3;
+	int64 base_combat = 4;
+	float max_pull_time	= 5;
+}
+
+message CacheUserInfo {
+	string nickname = 1;
+	string avatar = 2;
+	int64 timestamp = 3;
+}
+
