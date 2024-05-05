@@ -1,7 +1,7 @@
 syntax = "proto3";
 package kratos.api;
 
-option go_package = "hang-king-game/app/user/internal/conf;conf";
+option go_package = "hang-king-game/app/batt/internal/conf;conf";
 
 import "google/protobuf/duration.proto";
 
@@ -11,18 +11,23 @@ message Bootstrap {
 }
 
 message Server {
-  message HTTP {
-    string network = 1;
-    string addr = 2;
-    google.protobuf.Duration timeout = 3;
+  message Websocket {
+    string addr = 1;
+    string serverType = 2;
+    // 本地消息处理器缓冲区的大小
+    int32 localProcess = 3;
+    // 心跳间隔时间(秒)
+    google.protobuf.Duration interval = 4;
+    // 每个代理缓冲区的大小
+    int32 messages = 5;
+    // 是否压缩消息
+    bool compression = 6;
   }
-  message GRPC {
-    string network = 1;
-    string addr = 2;
-    google.protobuf.Duration timeout = 3;
+  message TCP {
+    string addr = 1;
   }
-  HTTP http = 1;
-  GRPC grpc = 2;
+  Websocket websocket = 1;
+  TCP tcp = 2;
 }
 
 message Data {

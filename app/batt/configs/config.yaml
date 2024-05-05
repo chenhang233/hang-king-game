@@ -1,10 +1,12 @@
 server:
-  http:
-    addr: 0.0.0.0:8000
-    timeout: 1s
-  grpc:
-    addr: 0.0.0.0:9000
-    timeout: 1s
+  websocket:
+    addr: 0.0.0.0:8001
+    localProcess: 15
+    interval: 300s
+    messages: 32
+    compression: false
+  tcp:
+    addr: 0.0.0.0:9001
 data:
   databases:
     - driver: mysql

@@ -10,8 +10,8 @@ import (
 )
 
 var (
-	// ErrUserNotFound is user not found.
-	ErrUserNotFound = errors.NotFound(v1.ErrorReason_USER_NOT_FOUND.String(), "user not found")
+	// ErrUserNotFound is batt not found.
+	ErrUserNotFound = errors.NotFound(v1.ErrorReason_USER_NOT_FOUND.String(), "batt not found")
 )
 
 // Greeter is a Greeter model.
@@ -22,11 +22,7 @@ type Greeter struct {
 
 // GreeterRepo is a Greater repo.
 type GreeterRepo interface {
-	Save(context.Context, *Greeter) (*Greeter, error)
-	Update(context.Context, *Greeter) (*Greeter, error)
-	FindByID(context.Context, int64) (*Greeter, error)
-	ListByHello(context.Context, string) ([]*Greeter, error)
-	ListAll(context.Context) ([]*Greeter, error)
+	Test1(context.Context, *Greeter) (*Greeter, error)
 }
 
 // GreeterUsecase is a Greeter usecase.
@@ -35,13 +31,11 @@ type GreeterUsecase struct {
 	log  *log.Helper
 }
 
-// NewGreeterUsecase new a Greeter usecase.
 func NewGreeterUsecase(repo GreeterRepo, logger log.Logger) *GreeterUsecase {
 	return &GreeterUsecase{repo: repo, log: log.NewHelper(logger)}
 }
 
-// CreateGreeter creates a Greeter, and returns the new Greeter.
-func (uc *GreeterUsecase) CreateGreeter(ctx context.Context, g *Greeter) (*Greeter, error) {
+func (uc *GreeterUsecase) Test1Greeter(ctx context.Context, g *Greeter) (*Greeter, error) {
 	uc.log.WithContext(ctx).Infof("CreateGreeter: %v", g.Hello)
-	return uc.repo.Save(ctx, g)
+	return uc.repo.Test1(ctx, g)
 }

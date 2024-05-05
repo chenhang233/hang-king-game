@@ -61,7 +61,7 @@ components:
                     format: int32
                 message:
                     type: string
-                    description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+                    description: A developer-facing error message, which should be in English. Any batt-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
                 details:
                     type: array
                     items:

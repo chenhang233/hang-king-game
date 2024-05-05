@@ -7,7 +7,6 @@
 package main
 
 import (
-	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/topfreegames/pitaya/v2"
 	"hang-king-game/app/batt/internal/biz"
@@ -20,7 +19,7 @@ import (
 // Injectors from wire.go:
 
 // wireApp init kratos application.
-func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*pitaya.Pitaya, func(), error) {
+func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (pitaya.Pitaya, func(), error) {
 	dataData, cleanup, err := data.NewData(confData, logger)
 	if err != nil {
 		return nil, nil, err
@@ -28,8 +27,9 @@ func wireApp(confServer *conf.Server, confData *conf.Data, logger log.Logger) (*
 	greeterRepo := data.NewGreeterRepo(dataData, logger)
 	greeterUsecase := biz.NewGreeterUsecase(greeterRepo, logger)
 	greeterService := service.NewGreeterService(greeterUsecase)
-	ws := server.NewWsServer(confServer.Websocket,logger, greeterService)
-	app := newApp2(logger,ws)
+	app := server.NewServer(confServer.Websocket,logger)
+	components :=server.WsComponents(greeterService)
+	buildWsApp(app,components)
 	return app, func() {
 		cleanup()
 	}, nil

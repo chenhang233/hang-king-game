@@ -19,7 +19,7 @@ func NewGreeterService(uc *biz.GreeterUsecase) *GreeterService {
 }
 
 func (s *GreeterService) SayHello(ctx context.Context, req *v1.HelloRequest) (*v1.HelloReply, error) {
-	greeter, err := s.uc.CreateGreeter(ctx, &biz.Greeter{Id: int(req.Id)})
+	greeter, err := s.uc.Test1Greeter(ctx, &biz.Greeter{Id: int(req.Id)})
 	if err != nil {
 		return nil, err
 	}

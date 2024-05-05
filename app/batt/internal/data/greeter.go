@@ -3,11 +3,9 @@ package data
 import (
 	"context"
 	"encoding/json"
-	"hang-king-game/app/user/internal/model"
-
-	"hang-king-game/app/user/internal/biz"
-
 	"github.com/go-kratos/kratos/v2/log"
+	"hang-king-game/app/batt/internal/biz"
+	"hang-king-game/app/batt/internal/model"
 )
 
 type greeterRepo struct {

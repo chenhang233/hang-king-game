@@ -3,13 +3,12 @@ package data
 import (
 	"context"
 	"fmt"
+	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-redis/redis/v8"
+	"github.com/google/wire"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"hang-king-game/app/user/internal/conf"
-
-	"github.com/go-kratos/kratos/v2/log"
-	"github.com/google/wire"
+	"hang-king-game/app/batt/internal/conf"
 )
 
 // ProviderSet is data providers.

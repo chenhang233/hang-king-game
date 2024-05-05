@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"github.com/go-kratos/kratos/v2"
 	"github.com/go-kratos/kratos/v2/config"
@@ -11,6 +12,7 @@ import (
 	"github.com/go-kratos/kratos/v2/transport/http"
 	"github.com/topfreegames/pitaya/v2"
 	"hang-king-game/app/batt/internal/conf"
+	"hang-king-game/app/batt/internal/server"
 	"os"
 
 	_ "go.uber.org/automaxprocs"
@@ -46,8 +48,16 @@ func newApp(logger log.Logger, gs *grpc.Server, hs *http.Server) *kratos.App {
 	)
 }
 
-func newApp2(logger log.Logger, app *pitaya.Pitaya) *pitaya.Pitaya {
-	return app
+func buildWsApp(app pitaya.Pitaya, registerComponents []*server.RegisterComponent) {
+	for _, registerComponent := range registerComponents {
+		err := app.GroupCreate(context.Background(), registerComponent.GroupName)
+		if err != nil {
+			panic(err)
+		}
+		app.Register(registerComponent.Component,
+			registerComponent.Options...,
+		)
+	}
 }
 
 func main() {
@@ -82,6 +92,6 @@ func main() {
 		panic(err)
 	}
 	defer cleanup()
-	defer (*app).Shutdown()
-	(*app).Start()
+	defer app.Shutdown()
+	app.Start()
 }
